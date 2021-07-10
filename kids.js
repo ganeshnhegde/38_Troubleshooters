@@ -1,9 +1,8 @@
-
+//Questions For Kids
 let questions = [
   {
     id: 1,
         question: "Feeling down, depressed, or hopeless",
-    answer: "[0,1,2,3]",
     options: [
       "Not at all",
       "Several days",
@@ -14,7 +13,6 @@ let questions = [
   {
     id: 2,
       question: "Trouble falling or staying asleep, or sleeping too much",
-    answer: "[0,1,2,3]",
       options: [
           "Not at all",
           "Several days",
@@ -25,7 +23,6 @@ let questions = [
   {
     id: 3,
       question: "Feeling tired or having little energy",
-      answer: "[0,1,2,3]",
     options: [
       "Not at all",
       "Several days",
@@ -36,7 +33,6 @@ let questions = [
     {
         id: 4,
         question: "Thoughts or plans about hurting yourself?",
-        answer: "[0,1,2,3]",
         options: [
             "Hardly Ever",
             "Much of the time",
@@ -47,7 +43,6 @@ let questions = [
     {
         id: 5,
         question: "Poor appetite or overeating",
-        answer: "[0,1,2,3]",
         options: [
             "Not at all",
             "Several days",
@@ -58,7 +53,6 @@ let questions = [
     {
         id: 6,
         question: "Feeling bad about yourself or that you are a failure or have let yourself or your family down",
-        answer: "[0,1,2,3]",
         options: [
             "Not at all",
             "Several days",
@@ -69,7 +63,6 @@ let questions = [
     {
         id: 7,
         question: "Trouble concentrating on things, such as reading the newspaper or watching television",
-        answer: "[0,1,2,3]",
         options: [
             "Just a little",
             "Somewhat",
@@ -80,7 +73,6 @@ let questions = [
     {
         id: 8,
         question: "Moving or speaking so slowly that other people could have noticed",
-        answer: "[0,1,2,3]",
         options: [
             "Not at all",
             "Several days",
@@ -91,7 +83,6 @@ let questions = [
     {
         id: 9,
         question: "Have you been feeling cranky/irritated?",
-        answer: "[0,1,2,3]",
         options: [
             "Never",
             "Several days",
@@ -102,7 +93,6 @@ let questions = [
     {
         id: 10,
         question: "If you've had any days with issues above, how difficult have these problems made it for you at work, home, school, or with other people?",
-        answer: "[0,1,2,3]",
         options: [
             "Not at all difficult",
             "Somewhat difficult",
@@ -122,7 +112,7 @@ window.onload = function() {
 
 function next() {
 
-   
+  
   // if the question is last then redirect to final page
   if (question_count == questions.length - 1) {
     sessionStorage.setItem("time", time);
@@ -130,20 +120,23 @@ function next() {
     location.href = "end.html";
   }
   console.log(question_count);
-
   let user_answer = document.querySelector("li.option.active").innerHTML;
-  // check if the answer is right or wrong
-  if (user_answer == questions[question_count].answer) {
-    points += 10;
-    sessionStorage.setItem("points", points);
-  }
+  var outputs=questions[question_count].options;
+  console.log(outputs.indexOf(user_answer));
+  
+  // assign marks according to user answer
+  points += outputs.indexOf(user_answer);
+  sessionStorage.setItem("points", points);
   console.log(points);
 
   question_count++;
   show(question_count);
+  
+
 }
 
 function show(count) {
+  
   let question = document.getElementById("questions");
   let [first, second, third, fourth] = questions[count].options;
 
@@ -157,6 +150,7 @@ function show(count) {
 </ul> 
   `;
   toggleActive();
+  console.log("hi"+questions[question_count].answer);
 }
 
 function toggleActive() {
@@ -170,5 +164,9 @@ function toggleActive() {
       }
       option[i].classList.add("active");
     };
+
   }
+  
 }
+
+
